@@ -17,7 +17,6 @@ namespace Amotels
                 ui.Loading();
                 ui.Start();
                 Console.ReadKey();
-                //To do list: Add things to the data base, add documantation, ?add customer functionality?
                 
                 
             }
