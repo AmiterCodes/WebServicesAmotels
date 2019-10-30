@@ -140,7 +140,7 @@ namespace Amotels
 
             DBHelper dbHelper = new DBHelper(PROVIDER, PATH);
             if (!dbHelper.OpenConnection()) throw new ConnectionException();
-            string activitys = (string)dbHelper.GetDataTable("SELECT description FROM" + 
+            string activitys = (string)dbHelper.GetDataTable("SELECT description FROM " + 
                 "activities WHERE activityID = " + activity).Rows[0]["description"];
             dbHelper.CloseConnection();
             return activitys;
