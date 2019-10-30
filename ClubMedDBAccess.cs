@@ -62,7 +62,7 @@ namespace Amotels
         {
             DBHelper helper = new DBHelper(PROVIDER, PATH);
             if (!helper.OpenConnection()) throw new ConnectionException();
-            int data = helper.WriteData($"INSERT INTO costumers (id, firstName, lastName) VALUES({customer.Id}, {customer.FirstName}, {customer.LastName})");
+            int data = helper.WriteData($@"INSERT INTO costumers (id, firstName, lastName) VALUES(""{customer.Id}"", ""{customer.FirstName}"", ""{customer.LastName}"");");
             if (data == -1) throw new ArgumentException("Insertion failed");
             helper.CloseConnection();
         }
@@ -232,7 +232,7 @@ namespace Amotels
                     + " AND roomType = " + roomTypeID;
                 db = dbHelper.GetDataTable(sql);
                 DataTable tb = dbHelper.GetDataTable($"SELECT orders.orderID FROM orders WHERE week = {week} AND villageID = {villageID}");
-                if (tb.Rows.Count < (int)db.Rows[0]["numOfRooms"])
+                if (tb.Rows.Count >= (int)db.Rows[0]["numOfRooms"])
 {
                     throw new ArgumentException("there are no rooms available.");
                 }
